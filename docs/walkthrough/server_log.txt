@@ -1,0 +1,63 @@
+[    0.002] INFO  Unified Engineering Workbench 1.0.0 starting
+[    0.002] INFO  web root: web, data: data, logs: <extracted folder>\logs [path redacted]
+[    0.003] INFO  listening on http://127.0.0.1:47900/ (process start -> HTTP ready: 76 ms)
+[   11.454] INFO  GET /api/health -> 200
+[   11.959] INFO  GET /api/system -> 200
+[   12.134] INFO  GET /api/examples -> 200
+[   25.039] INFO  geometry import: heatsink_fins.stl (33936 bytes)
+[   25.041] INFO  heatsink_fins.stl: 156 triangles, closed
+[   25.042] INFO  POST /api/geometry/import -> 202
+[   55.285] INFO  geometry import: heatsink_fins.stl (33936 bytes)
+[   55.285] INFO  heatsink_fins.stl: 156 triangles, closed
+[   55.288] INFO  POST /api/geometry/import -> 202
+[   63.966] INFO  geometry import: malformed/stl_nan_vertex.stl (111 bytes)
+[   63.966] WARN  malformed/stl_nan_vertex.stl: Non-finite value 'nan' in vertex.
+[   63.968] INFO  POST /api/geometry/import -> 202
+[   72.351] INFO  geometry import: malformed/stl_binary.stl (134 bytes)
+[   72.351] WARN  malformed/stl_binary.stl: This is a binary STL file; only ASCII STL is supported.
+[   72.353] INFO  POST /api/geometry/import -> 202
+[   83.550] INFO  nodal CSV import: heatsink_nodal_temperature_SYNTHETIC.csv (329887 bytes)
+[   83.551] INFO  POST /api/results/import -> 202
+[   83.554] INFO  heatsink_nodal_temperature_SYNTHETIC.csv: 8274 nodes, T in [51.683, 85] C
+[   91.669] INFO  GET /api/results/j5/node/5992 -> 200
+[   99.763] INFO  nodal CSV import: malformed/csv_semicolon.csv (47 bytes)
+[   99.764] WARN  malformed/csv_semicolon.csv: The file is semicolon-delimited.
+[   99.766] INFO  POST /api/results/import -> 202
+[  104.963] INFO  POST /api/fea/study -> 202
+[  109.319] INFO  POST /api/fea/study -> 202
+[  122.839] INFO  POST /api/fea/solve -> 200
+[  135.567] INFO  POST /api/fea/study -> 202
+[  136.399] INFO  POST /api/fea/study -> 202
+[  143.892] INFO  GET /api/system -> 200
+[  149.848] INFO  benchmark: 4000 cases x 4000 elements
+[  149.849] INFO  POST /api/bench/run -> 202
+[  157.051] INFO  benchmark finished; agreement PASS
+[  165.382] INFO  benchmark: 4000 cases x 4000 elements
+[  165.387] INFO  POST /api/bench/run -> 202
+[  168.621] INFO  cancel requested for job j12
+[  173.178] INFO  GET /api/hw/devices -> 200
+[  177.594] INFO  POST /api/hw/mcu0/connect -> 202
+[  177.654] INFO  mcu0 attempt 1: connected
+[  186.869] WARN  [SIMULATED] fault armed on jtag0: 1 timeout(s)
+[  186.869] INFO  POST /api/hw/jtag0/fault -> 200
+[  187.897] INFO  POST /api/hw/jtag0/connect -> 202
+[  188.306] WARN  jtag0 attempt 1: [SIMULATED] SEGGER J-Link (JTAG/SWD debug probe) did not answer within 250 ms (injected timeout). -> retry in 100 ms
+[  188.306] INFO  jtag0 attempt 2: connected
+[  188.306] INFO  jtag0 recovered after 2 attempts
+[  198.710] WARN  [SIMULATED] fault armed on mcu0: 0 timeout(s), link drop on next poll
+[  198.710] INFO  POST /api/hw/mcu0/fault -> 200
+[  198.821] WARN  [SIMULATED] USB link to ST NUCLEO-F446RE (STM32F446RE, Cortex-M4F) lost (cable unplugged?).
+[  203.293] INFO  POST /api/hw/mcu0/connect -> 202
+[  203.366] INFO  mcu0 attempt 1: connected
+[  216.395] INFO  mcu0 disconnected
+[  216.397] INFO  POST /api/hw/mcu0/disconnect -> 200
+[  216.479] INFO  jtag0 disconnected
+[  216.483] INFO  POST /api/hw/jtag0/disconnect -> 200
+[  216.580] INFO  POST /api/backprop/run -> 202
+[  220.943] INFO  POST /api/backprop/run -> 202
+[  226.603] INFO  GET /api/system -> 200
+[  230.194] INFO  POST /api/selftest -> 202
+[  230.234] INFO  self-verification passed
+[  248.443] INFO  shutdown requested from the UI
+[  248.443] INFO  POST /api/shutdown -> 200
+[  248.508] INFO  stopped cleanly
