@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d35400"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f6fd1"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker>
+  </defs>
+  <rect width="1100" height="720" fill="#ffffff"/>
+  <text x="20" y="30" font-size="18" font-weight="700" fill="#1b1f24">Task E - Host-connected embedded workbench (design; mocks in software)</text>
+
+  <!-- USB wiring (drawn first, under boxes) -->
+  <g fill="none" stroke="#444" stroke-width="3.5">
+    <polyline points="270,210 320,210"/>
+    <polyline points="450,185 490,185 490,135 535,135"/>
+    <polyline points="450,255 500,255 500,400 535,400"/>
+    <polyline points="385,150 385,50 960,50 960,100"/>
+  </g>
+  <g font-size="10" fill="#444">
+    <text x="274" y="202">USB</text>
+    <text x="456" y="178">USB</text>
+    <text x="472" y="248">USB</text>
+    <text x="600" y="44">USB 2.0 (5 V VBUS + D+/D-) to J-Link</text>
+  </g>
+
+  <!-- Host PC -->
+  <rect x="20" y="60" width="250" height="300" rx="8" fill="#f4f6f9" stroke="#5b616b" stroke-width="1.5"/>
+  <text x="35" y="84" font-size="14" font-weight="700" fill="#1b1f24">Host PC - Windows 11 x64</text>
+  <g font-size="11" fill="#1b1f24">
+    <rect x="35" y="96" width="220" height="42" rx="4" fill="#fff" stroke="#8a9099"/>
+    <text x="45" y="114">Browser UI - Hardware view</text>
+    <text x="45" y="129" fill="#5b616b">HTTP 127.0.0.1 (loopback only)</text>
+    <rect x="35" y="148" width="220" height="42" rx="4" fill="#fff" stroke="#8a9099"/>
+    <text x="45" y="166">Launch.exe - C++17 core</text>
+    <text x="45" y="181" fill="#5b616b">job manager, transport layer</text>
+    <rect x="35" y="200" width="220" height="42" rx="4" fill="#fff" stroke="#8a9099"/>
+    <text x="45" y="218">DeviceManager</text>
+    <text x="45" y="233" fill="#5b616b">discovery, retry/backoff, state</text>
+    <rect x="35" y="252" width="220" height="56" rx="4" fill="#fff" stroke="#8a9099"/>
+    <text x="45" y="270">IDeviceAdapter interface</text>
+    <text x="45" y="286" fill="#b03a2e" font-weight="700">Mock adapters (SIMULATED, built)</text>
+    <text x="45" y="300" fill="#5b616b">Real adapters (future, same API)</text>
+    <text x="35" y="330" font-size="10" fill="#5b616b">USB drivers: ST-LINK VCP (CDC-ACM),</text>
+    <text x="35" y="344" font-size="10" fill="#5b616b">FTDI VCP/D2XX, SEGGER J-Link</text>
+  </g>
+
+  <!-- Hub -->
+  <rect x="320" y="150" width="130" height="120" rx="8" fill="#f4f6f9" stroke="#5b616b" stroke-width="1.5"/>
+  <text x="335" y="175" font-size="13" font-weight="700">Powered USB</text>
+  <text x="335" y="192" font-size="13" font-weight="700">2.0 hub</text>
+  <text x="335" y="214" font-size="10" fill="#5b616b">own 5 V supply,</text>
+  <text x="335" y="228" font-size="10" fill="#5b616b">per-port 500 mA limit</text>
+  <rect x="335" y="240" width="62" height="16" rx="3" fill="#c0392b"/><text x="341" y="252" font-size="10" fill="#fff">5 V VBUS</text>
+
+  <!-- NUCLEO -->
+  <rect x="520" y="60" width="260" height="235" rx="8" fill="#fbfcfe" stroke="#1b1f24" stroke-width="1.6"/>
+  <text x="532" y="82" font-size="13" font-weight="700">ST NUCLEO-F446RE (MCU board)</text>
+  <rect x="535" y="95" width="90" height="120" rx="4" fill="#fff" stroke="#8a9099"/>
+  <text x="543" y="113" font-size="11" font-weight="700">ST-LINK/V2-1</text>
+  <text x="543" y="128" font-size="10" fill="#5b616b">USB 0483:374B</text>
+  <text x="543" y="160" font-size="10">SWD out</text>
+  <text x="543" y="190" font-size="10">VCP UART</text>
+  <rect x="680" y="95" width="90" height="120" rx="4" fill="#fff" stroke="#8a9099"/>
+  <text x="688" y="113" font-size="11" font-weight="700">STM32F446RE</text>
+  <text x="688" y="128" font-size="10" fill="#5b616b">Cortex-M4F</text>
+  <text x="688" y="160" font-size="10">SWD/JTAG pins</text>
+  <text x="688" y="190" font-size="10">SPI2 master</text>
+  <!-- isolated SWD -->
+  <line x1="625" y1="156" x2="680" y2="156" stroke="#999" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="647" y="162" font-size="16" font-weight="700" fill="#b03a2e">X</text>
+  <text x="632" y="142" font-size="9" fill="#b03a2e">CN2 open</text>
+  <!-- VCP UART -->
+  <line x1="625" y1="186" x2="680" y2="186" stroke="#1f6fd1" stroke-width="2" marker-start="url(#ab)" marker-end="url(#ab)"/>
+  <text x="634" y="179" font-size="9" fill="#1f6fd1">USART2</text>
+  <text x="535" y="234" font-size="10" fill="#1b1f24">CN2 jumpers removed: onboard ST-LINK SWD</text>
+  <text x="535" y="248" font-size="10" fill="#1b1f24">isolated; ST-LINK still powers board + VCP.</text>
+  <rect x="535" y="260" width="58" height="16" rx="3" fill="#c0392b"/><text x="541" y="272" font-size="10" fill="#fff">5 V U5V</text>
+  <rect x="600" y="260" width="64" height="16" rx="3" fill="#1f6fd1"/><text x="606" y="272" font-size="10" fill="#fff">3.3 V I/O</text>
+
+  <!-- J-Link -->
+  <rect x="850" y="100" width="225" height="140" rx="8" fill="#fbfcfe" stroke="#1b1f24" stroke-width="1.6"/>
+  <text x="862" y="122" font-size="13" font-weight="700">SEGGER J-Link</text>
+  <text x="862" y="138" font-size="10" fill="#5b616b">debug probe, USB 1366:0101</text>
+  <text x="862" y="158" font-size="10">20-pin 0.1" -> 10-pin 0.05"</text>
+  <text x="862" y="172" font-size="10">Cortex adapter, flying leads</text>
+  <text x="862" y="190" font-size="10">VTref (pin 1) senses 3.3 V</text>
+  <text x="862" y="204" font-size="10">pin 19 5 V supply: OFF</text>
+  <text x="862" y="224" font-size="10" font-weight="700" fill="#b03a2e">No user compute - bridge only</text>
+
+  <!-- J-Link owns MCU debug -->
+  <line x1="850" y1="160" x2="772" y2="160" stroke="#d35400" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="784" y="150" font-size="9.5" fill="#d35400" font-weight="700">JTAG/SWD</text>
+  <text x="784" y="178" font-size="9.5" fill="#d35400">J-Link owns</text>
+
+  <!-- Arty -->
+  <rect x="520" y="330" width="260" height="235" rx="8" fill="#fbfcfe" stroke="#1b1f24" stroke-width="1.6"/>
+  <text x="532" y="352" font-size="13" font-weight="700">Digilent Arty A7-35T (FPGA board)</text>
+  <rect x="535" y="365" width="95" height="110" rx="4" fill="#fff" stroke="#8a9099"/>
+  <text x="543" y="383" font-size="11" font-weight="700">FT2232HQ</text>
+  <text x="543" y="397" font-size="9.5" fill="#5b616b">USB 0403:6010</text>
+  <text x="543" y="421" font-size="10">ch.A JTAG</text>
+  <text x="543" y="455" font-size="10">ch.B UART</text>
+  <rect x="690" y="365" width="80" height="110" rx="4" fill="#fff" stroke="#8a9099"/>
+  <text x="697" y="383" font-size="11" font-weight="700">XC7A35T</text>
+  <text x="697" y="397" font-size="9.5" fill="#5b616b">Artix-7</text>
+  <text x="697" y="421" font-size="10">TAP</text>
+  <text x="697" y="455" font-size="10">UART D10/A9</text>
+  <line x1="630" y1="417" x2="688" y2="417" stroke="#d35400" stroke-width="3" marker-end="url(#ah)"/>
+  <text x="640" y="409" font-size="9" fill="#d35400" font-weight="700">master</text>
+  <line x1="630" y1="451" x2="688" y2="451" stroke="#1f6fd1" stroke-width="2" marker-start="url(#ab)" marker-end="url(#ab)"/>
+  <text x="640" y="445" font-size="9" fill="#1f6fd1">UART</text>
+  <!-- Pmod JA tab -->
+  <rect x="770" y="395" width="34" height="60" rx="3" fill="#e9eef7" stroke="#1f6fd1" stroke-width="1.5"/>
+  <text x="774" y="415" font-size="10" font-weight="700" fill="#1f6fd1">Pmod</text>
+  <text x="779" y="430" font-size="10" font-weight="700" fill="#1f6fd1">JA</text>
+  <text x="535" y="494" font-size="10">External J-Link is NOT on this JTAG chain</text>
+  <text x="535" y="508" font-size="10">(one master per chain).</text>
+  <rect x="535" y="520" width="58" height="16" rx="3" fill="#c0392b"/><text x="541" y="532" font-size="10" fill="#fff">5 V USB</text>
+  <rect x="598" y="520" width="44" height="16" rx="3" fill="#1f6fd1"/><text x="603" y="532" font-size="10" fill="#fff">3.3 V</text>
+  <rect x="647" y="520" width="68" height="16" rx="3" fill="#2b9348"/><text x="652" y="532" font-size="10" fill="#fff">1.0/1.8 V</text>
+  <rect x="720" y="520" width="50" height="16" rx="3" fill="#7b4fa0"/><text x="725" y="532" font-size="10" fill="#fff">1.35 V</text>
+  <text x="535" y="554" font-size="9.5" fill="#5b616b">VCCINT 1.0, VCCAUX 1.8, DDR3L 1.35, VCCO 3.3 V</text>
+
+  <!-- SPI link MCU -> FPGA -->
+  <polyline points="770,200 815,200 815,425 806,425" fill="none" stroke="#1f6fd1" stroke-width="3" marker-end="url(#ab)"/>
+  <text x="822" y="290" font-size="10.5" font-weight="700" fill="#1f6fd1">SPI @ 3.3 V</text>
+  <text x="822" y="305" font-size="10" fill="#1f6fd1">MCU master -> FPGA slave</text>
+  <text x="822" y="319" font-size="10" fill="#1f6fd1">SCK, MOSI, MISO, CS + GND</text>
+  <text x="822" y="333" font-size="10" fill="#1f6fd1">no level shifting needed</text>
+
+  <!-- Optional level shifter -->
+  <rect x="850" y="400" width="225" height="100" rx="8" fill="#ffffff" stroke="#5b616b" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="862" y="422" font-size="12" font-weight="700">Optional level shifter</text>
+  <text x="862" y="439" font-size="10">SN74LVC8T245 / TXS0108E</text>
+  <text x="862" y="456" font-size="10" font-weight="700" fill="#b03a2e">only if a 5 V peripheral is added</text>
+  <text x="862" y="473" font-size="10">A side 3.3 V, B side 5 V</text>
+  <text x="862" y="489" font-size="10">(not used for MCU-FPGA link)</text>
+  <line x1="804" y1="445" x2="848" y2="445" stroke="#5b616b" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+  <!-- Ground note -->
+  <rect x="20" y="380" width="470" height="185" rx="8" fill="#f8f8f8" stroke="#8a9099"/>
+  <text x="35" y="403" font-size="13" font-weight="700">Ground and power reference</text>
+  <g font-size="10.5" fill="#1b1f24">
+    <text x="35" y="424">- One ground reference: every board is USB-powered through the same hub,</text>
+    <text x="35" y="439">  so all grounds meet at the hub (star point); no extra supplies, no loops.</text>
+    <text x="35" y="458">- Inter-board GND first: Pmod JA pin 5/11 to NUCLEO GND, J-Link even pins</text>
+    <text x="35" y="473">  to NUCLEO GND, then signal wires.</text>
+    <text x="35" y="492">- Never tie supply rails together: Pmod VCC (pin 6/12) and NUCLEO 3V3 are</text>
+    <text x="35" y="507">  both sources. Do not use E5V or J-Link pin 19 to backfeed a board.</text>
+    <text x="35" y="526">- J-Link VTref only senses the target rail (high impedance).</text>
+    <text x="35" y="545">- Pin numbers: docs/embedded_design.md section 3 (verify per board revision).</text>
+  </g>
+
+  <!-- Legend -->
+  <rect x="20" y="585" width="1055" height="120" rx="8" fill="#ffffff" stroke="#c9ced6"/>
+  <text x="35" y="607" font-size="13" font-weight="700">Legend</text>
+  <line x1="35" y1="628" x2="85" y2="628" stroke="#444" stroke-width="3.5"/><text x="95" y="632" font-size="11">USB 2.0 cable (VBUS 5 V + data)</text>
+  <line x1="35" y1="652" x2="85" y2="652" stroke="#d35400" stroke-width="3" marker-end="url(#ah)"/><text x="95" y="656" font-size="11">JTAG/SWD ownership: arrow from the only master to its target TAP</text>
+  <line x1="35" y1="676" x2="85" y2="676" stroke="#1f6fd1" stroke-width="3"/><text x="95" y="680" font-size="11">3.3 V logic signals (SPI, UART)</text>
+  <line x1="35" y1="697" x2="85" y2="697" stroke="#5b616b" stroke-width="1.5" stroke-dasharray="6 4"/><text x="95" y="701" font-size="11">optional / not populated</text>
+  <g font-size="11">
+    <rect x="560" y="618" width="16" height="14" fill="#c0392b"/><text x="584" y="630">5 V USB VBUS domain</text>
+    <rect x="560" y="642" width="16" height="14" fill="#1f6fd1"/><text x="584" y="654">3.3 V I/O (MCU VDD, Pmod VCCO, VTref)</text>
+    <rect x="560" y="666" width="16" height="14" fill="#2b9348"/><text x="584" y="678">1.0 V / 1.8 V FPGA core / auxiliary</text>
+    <rect x="560" y="690" width="16" height="14" fill="#7b4fa0"/><text x="584" y="702">1.35 V DDR3L</text>
+    <text x="880" y="630" fill="#b03a2e" font-weight="700">Software status:</text>
+    <text x="880" y="646">all three adapters are</text>
+    <text x="880" y="662">SIMULATED mocks; no USB</text>
+    <text x="880" y="678">device is opened.</text>
+  </g>
+</svg>
