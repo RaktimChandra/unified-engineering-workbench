@@ -11,7 +11,7 @@ const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 let html = readFileSync(path.join(root, 'docs/report/report.html'), 'utf8');
 html = html.replace(/\{\{SVG:([^}]+)\}\}/g, (_, rel) =>
   readFileSync(path.join(root, rel), 'utf8').replace(/<\?xml[^>]*>/, ''));
-const tmp = path.join(root, 'docs/report/.report.inlined.html');
+const tmp = path.join(root, 'docs/report/.report.inlined.html'); // same folder, so relative <img> paths resolve
 writeFileSync(tmp, html);
 const browser = await chromium.launch();
 const page = await browser.newPage();
