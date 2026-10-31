@@ -1,0 +1,25 @@
+# Unified Engineering Workbench - pinned dependencies (all vendored; no download at build or run time)
+# format: name | version | licence | source | path | sha256
+
+[runtime + build, C++ header-only]
+cpp-httplib     | v0.18.3  | MIT        | https://github.com/yhirose/cpp-httplib (tag v0.18.3)       | third_party/httplib/httplib.h     | a0a0c13dc086663863dbe6730a19716f7d3744904b6205496e8301750814dbd5
+nlohmann/json   | v3.11.3  | MIT        | https://github.com/nlohmann/json (tag v3.11.3, single_include) | third_party/nlohmann/json.hpp | 9bea4c8066ef4a1c206b2be5a36302f8926f7fdc6087af5d20b417d0cf103ea6
+
+[tests only]
+doctest         | v2.4.11  | MIT        | https://github.com/doctest/doctest (tag v2.4.11)           | third_party/doctest/doctest.h     | 44faa038e9c3f9728efbda143748d01124ea0a27f4bf78f35a15d8fab2e039fb
+
+[frontend, rendering only]
+three.js        | r170 (npm three@0.170.0) | MIT | https://www.npmjs.com/package/three/v/0.170.0 | src/frontend/vendor/three/three.module.min.js | 08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7
+OrbitControls   | r170 (examples/jsm)      | MIT | same package                                  | src/frontend/vendor/three/OrbitControls.js    | 80efaadea4f8a636a65fb0bd08bfef62f3d93a0bb94e2e7500f23176c5c07f4e
+
+[redistributed runtime, statically linked into the Windows executables]
+libstdc++ / libgcc (MinGW-w64 GCC 13, posix threads) | GPL-3.0 with the GCC Runtime Library Exception (permits static linking and redistribution of the resulting binary under any terms)
+winpthreads (MinGW-w64)                              | MIT / BSD-style (copyright notices reproduced in docs/THIRD_PARTY_NOTICES.md)
+msvcrt.dll, kernel32, user32, shell32, ws2_32        | Windows system DLLs, not redistributed
+
+[toolchain used for the submitted binaries and results]
+MinGW-w64 GCC   | 13-posix (Ubuntu 24.04 package g++-mingw-w64-x86-64-posix) | Windows x64 cross-compiler
+GCC             | 13.3.0  | native Linux build used for tests and committed results
+Clang           | 18.1.3  | portability check (builds warning-free, all tests pass)
+CMake / Ninja   | 3.28.3 / 1.11.1
+Wine            | 9.0     | used only to execute the Windows binaries during verification
