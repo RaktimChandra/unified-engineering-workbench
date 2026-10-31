@@ -1,0 +1,12 @@
+CPU model         : AMD Ryzen 7 6800H with Radeon Graphics         
+Logical CPUs      : 16
+Physical cores    : 8
+RAM               : 31.26 GiB
+OS                : Windows 10.0.26300
+Compiler          : GCC 13.0.0 (MinGW-w64)
+Build type / flags: Release / -O3 -DNDEBUG
+Workload          : 4000 independent rod solves x 4000 linear elements (4001 nodes), seed 20261101
+                    k ~ U[0.5, 400] W/(m K), q ~ U[1000, 100000] W/m^3
+Repetitions       : 1 warm-up (discarded) + 5 measured, median reported
+Timed region      : solve loop only (case generation 0.0355 ms, thread creation and comparisons excluded)
+Agreement         : max |T_serial - T_parallel| <= 1e-08 C -> PASS

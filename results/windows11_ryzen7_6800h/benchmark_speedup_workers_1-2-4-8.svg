@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460" font-family="Helvetica, Arial, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="78" y="26" font-size="16" font-weight="600" fill="#1b1f24">Task D: measured speedup T1/Tp vs worker count</text>
+<line x1="78" y1="44" x2="78" y2="384" stroke="#e6e8eb"/>
+<text x="78" y="402" font-size="11" text-anchor="middle" fill="#444">1</text>
+<line x1="172" y1="44" x2="172" y2="384" stroke="#e6e8eb"/>
+<text x="172" y="402" font-size="11" text-anchor="middle" fill="#444">2</text>
+<line x1="266" y1="44" x2="266" y2="384" stroke="#e6e8eb"/>
+<text x="266" y="402" font-size="11" text-anchor="middle" fill="#444">3</text>
+<line x1="360" y1="44" x2="360" y2="384" stroke="#e6e8eb"/>
+<text x="360" y="402" font-size="11" text-anchor="middle" fill="#444">4</text>
+<line x1="454" y1="44" x2="454" y2="384" stroke="#e6e8eb"/>
+<text x="454" y="402" font-size="11" text-anchor="middle" fill="#444">5</text>
+<line x1="548" y1="44" x2="548" y2="384" stroke="#e6e8eb"/>
+<text x="548" y="402" font-size="11" text-anchor="middle" fill="#444">6</text>
+<line x1="642" y1="44" x2="642" y2="384" stroke="#e6e8eb"/>
+<text x="642" y="402" font-size="11" text-anchor="middle" fill="#444">7</text>
+<line x1="736" y1="44" x2="736" y2="384" stroke="#e6e8eb"/>
+<text x="736" y="402" font-size="11" text-anchor="middle" fill="#444">8</text>
+<line x1="78" y1="368.378" x2="736" y2="368.378" stroke="#e6e8eb"/>
+<text x="70" y="372.378" font-size="11" text-anchor="end" fill="#444">1</text>
+<line x1="78" y1="324.246" x2="736" y2="324.246" stroke="#e6e8eb"/>
+<text x="70" y="328.246" font-size="11" text-anchor="end" fill="#444">2</text>
+<line x1="78" y1="280.114" x2="736" y2="280.114" stroke="#e6e8eb"/>
+<text x="70" y="284.114" font-size="11" text-anchor="end" fill="#444">3</text>
+<line x1="78" y1="235.982" x2="736" y2="235.982" stroke="#e6e8eb"/>
+<text x="70" y="239.982" font-size="11" text-anchor="end" fill="#444">4</text>
+<line x1="78" y1="191.85" x2="736" y2="191.85" stroke="#e6e8eb"/>
+<text x="70" y="195.85" font-size="11" text-anchor="end" fill="#444">5</text>
+<line x1="78" y1="147.718" x2="736" y2="147.718" stroke="#e6e8eb"/>
+<text x="70" y="151.718" font-size="11" text-anchor="end" fill="#444">6</text>
+<line x1="78" y1="103.587" x2="736" y2="103.587" stroke="#e6e8eb"/>
+<text x="70" y="107.587" font-size="11" text-anchor="end" fill="#444">7</text>
+<line x1="78" y1="59.4545" x2="736" y2="59.4545" stroke="#e6e8eb"/>
+<text x="70" y="63.4545" font-size="11" text-anchor="end" fill="#444">8</text>
+<rect x="78" y="44" width="658" height="340" fill="none" stroke="#8a9099"/>
+<text x="407" y="424" font-size="13" text-anchor="middle" fill="#1b1f24">Workers  p</text>
+<text transform="translate(18,214) rotate(-90)" font-size="13" text-anchor="middle" fill="#1b1f24">Speedup  T_serial / T_p  [-]</text>
+<polyline fill="none" stroke="#30638e" stroke-width="1.8" points="78,368.5455 172,325.9512 360,246.9997 736,94.18982 "/>
+<circle cx="78" cy="368.5455" r="3.2" fill="#fff" stroke="#30638e" stroke-width="1.5"/>
+<circle cx="172" cy="325.9512" r="3.2" fill="#fff" stroke="#30638e" stroke-width="1.5"/>
+<circle cx="360" cy="246.9997" r="3.2" fill="#fff" stroke="#30638e" stroke-width="1.5"/>
+<circle cx="736" cy="94.18982" r="3.2" fill="#fff" stroke="#30638e" stroke-width="1.5"/>
+<polyline fill="none" stroke="#999999" stroke-width="1.8" stroke-dasharray="6 4" points="78,368.3783 172,324.2463 360,235.9824 736,59.45455 "/>
+<rect x="478" y="52" width="250" height="46" fill="#ffffff" fill-opacity="0.92" stroke="#c9ced6"/>
+<line x1="486" y1="63" x2="510" y2="63" stroke="#30638e" stroke-width="2"/>
+<text x="518" y="67" font-size="11.5" fill="#1b1f24">measured (median of 5)</text>
+<line x1="486" y1="81" x2="510" y2="81" stroke="#999999" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="518" y="85" font-size="11.5" fill="#1b1f24">ideal linear speedup</text>
+<text x="78" y="448" font-size="10.5" fill="#5b616b">AMD Ryzen 7 6800H with Radeon Graphics         , 16 logical CPUs, GCC 13.0.0 (MinGW-w64)</text>
+</svg>
