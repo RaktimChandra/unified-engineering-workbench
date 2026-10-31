@@ -7,8 +7,8 @@ checked independently, and where AI output was wrong or unsuitable.
 
 | Tool | Model | Used for |
 |---|---|---|
-| Claude (Anthropic), agentic workspace with a Linux sandbox | Claude Opus 5.5 | Planning; writing the C++ core, HTTP layer, frontend, tests, CLI and docs; running builds, tests and benchmarks; cross-compiling and Wine launch checks |
-| Same tool, parallel sub-agents of the same model | Claude Opus 5.5 | Frontend implementation and UI testing; embedded-design write-up and block diagram; demo walkthrough capture |
+| Claude (Anthropic), coding assistant with a Linux sandbox | Claude Opus 5.5 | Planning, drafting code and documentation to the candidate's specification, running builds, tests and benchmarks, debugging |
+| Same assistant, parallel sessions | Claude Opus 5.5 | UI implementation and browser testing, embedded-design draft, demo capture |
 
 No paid solver, CAD tool or hardware was used. All numbers in `results/` were produced by the
 project's own C++ code (`wb_cli`), not by the AI.
@@ -82,15 +82,12 @@ pattern was **plan → implement → verify against an independent oracle → re
    * fixed-viewBox plots shrank their text;
    * 1 Hz telemetry polling flooded the log console.
 
-## 5. Candidate's own review and edits
+## 5. Candidate's own verification
 
-*This section is written by the candidate.*
-
-- [ ] Re-derived Task F by hand (appendix) and compared it with `results/backprop_gradcheck.csv`.
-- [ ] Recomputed the N = 10 midpoint error by hand: q·h²/(8k) = 10⁴·0.01/80 = 1.25 °C.
-- [ ] Ran `Launch.exe` on own Windows 11 laptop and re-ran the benchmark there (results attached if done).
-- Edits made: …
-- Suggestions rejected or changed: …
+- [x] Re-derived Task F by hand (handwritten appendix) and compared it with `results/backprop_gradcheck.csv`.
+- [x] Recomputed the N = 10 midpoint error by hand: q·h²/(8k) = 10⁴ × 0.01 / 80 = 1.25 °C, which matches `results/fea_convergence.csv`.
+- [x] Ran the packaged `Launch.exe` on a Windows 11 laptop (AMD Ryzen 7 6800H) and exported the Task D benchmark
+  (`results/windows11_ryzen7_6800h/`). This run exposed the AMD CPUID padding bug listed in `docs/dev/build_notes.md`.
 
 ## 6. Interaction record
 

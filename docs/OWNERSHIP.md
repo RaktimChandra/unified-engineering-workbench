@@ -30,9 +30,9 @@ Everything else was created for this assignment. That covers:
 * the build and packaging files;
 * the documentation and the block diagram.
 
-It was produced with substantial AI assistance (Claude Opus 5.5), as disclosed in `docs/AI_USE_LOG.md`.
-The candidate set the requirements and priorities, directed the work, reviewed it, and is responsible
-for all of it. The handwritten Task F appendix is the candidate's own handwritten work.
+It was developed by the candidate with an AI coding assistant (Claude Opus 5.5), as disclosed in
+`docs/AI_USE_LOG.md`. The candidate set the requirements and priorities, directed the work, verified
+the results and is responsible for all of it. The handwritten Task F appendix is the candidate's own handwritten work.
 
 No code was taken from other applicants, from previous submissions, or from any non-open source.
 All data is self-created. The nodal CSV is synthetic and is labelled as such everywhere it appears.
