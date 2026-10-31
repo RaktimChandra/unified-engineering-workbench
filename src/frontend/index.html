@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unified Engineering Workbench</title>
+  <link rel="stylesheet" href="css/app.css">
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three/three.module.min.js" } }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17 L9 7 L13 13 L16 9 L21 17 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <span class="brand-name">Unified Engineering Workbench</span>
+      <span class="brand-ver" id="app-version"></span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Workbench views">
+      <button role="tab" data-view="geometry" id="tab-geometry">Geometry</button>
+      <button role="tab" data-view="thermal" id="tab-thermal">Thermal Analysis</button>
+      <button role="tab" data-view="performance" id="tab-performance">Performance</button>
+      <button role="tab" data-view="hardware" id="tab-hardware">Hardware</button>
+      <button role="tab" data-view="backprop" id="tab-backprop">Backprop</button>
+      <button role="tab" data-view="verify" id="tab-verify">Verify</button>
+    </nav>
+    <div class="topbar-right">
+      <span class="conn" id="conn-state" title="Backend connection">connecting…</span>
+      <button class="btn btn-ghost" id="btn-quit" title="Stop the local backend and close">Quit</button>
+    </div>
+  </header>
+
+  <div class="banner banner-error" id="backend-down" hidden role="alert">
+    The local C++ backend is not responding. If you closed Launch.exe or it stopped, start it again; this page will reconnect automatically.
+  </div>
+
+  <main id="views">
+    <section class="view" id="view-geometry" role="tabpanel" aria-labelledby="tab-geometry" hidden></section>
+    <section class="view" id="view-thermal" role="tabpanel" aria-labelledby="tab-thermal" hidden></section>
+    <section class="view" id="view-performance" role="tabpanel" aria-labelledby="tab-performance" hidden></section>
+    <section class="view" id="view-hardware" role="tabpanel" aria-labelledby="tab-hardware" hidden></section>
+    <section class="view" id="view-backprop" role="tabpanel" aria-labelledby="tab-backprop" hidden></section>
+    <section class="view" id="view-verify" role="tabpanel" aria-labelledby="tab-verify" hidden></section>
+  </main>
+
+  <footer class="statusbar" id="statusbar">
+    <div class="status-job" id="status-job">
+      <span class="status-dot idle" id="status-dot" aria-hidden="true"></span>
+      <span id="status-text">Idle</span>
+      <div class="progress" id="status-progress" hidden><div class="progress-fill" id="status-fill"></div></div>
+      <button class="btn btn-small" id="status-cancel" hidden>Cancel</button>
+    </div>
+    <div class="status-right">
+      <span id="status-ready" class="muted"></span>
+      <button class="btn btn-small btn-ghost" id="toggle-log" aria-expanded="false" aria-controls="log-console">Log</button>
+    </div>
+  </footer>
+  <div class="log-console" id="log-console" hidden>
+    <div class="log-head"><strong>Backend log</strong><span class="muted">C++ server messages, newest last</span>
+      <button class="btn btn-small btn-ghost" id="log-close" aria-label="Close log">Close</button></div>
+    <pre id="log-lines" aria-live="polite"></pre>
+  </div>
+
+  <div class="overlay" id="quit-overlay" hidden>
+    <div class="overlay-card">
+      <h2>Backend stopped</h2>
+      <p>The workbench backend has shut down cleanly. You can close this tab. Double-click Launch.exe to start again.</p>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
