@@ -1,0 +1,19 @@
+{
+  // Starts the packaged application (the same Launch.exe an assessor double-clicks).
+  // Select "Workbench: packaged Launch.exe" in Run and Debug, then press F5.
+  // Prerequisite: Microsoft C/C++ extension (ms-vscode.cpptools) for the "cppvsdbg" type.
+  // No extension? Use Terminal > Run Task > "Workbench: run packaged Launch.exe" (tasks.json).
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Workbench: packaged Launch.exe",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/Launch.exe",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    }
+  ]
+}

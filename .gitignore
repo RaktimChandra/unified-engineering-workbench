@@ -9,3 +9,7 @@
 Thumbs.db
 # runtime logs written next to the exe
 /logs/
+# packaged binaries are produced by scripts/package.sh, never committed
+/Launch.exe
+/app/
+*.exe

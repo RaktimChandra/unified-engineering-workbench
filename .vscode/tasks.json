@@ -1,0 +1,25 @@
+{
+  // Extension-free alternative (works in VS Code and Antigravity):
+  // Terminal > Run Task > "Workbench: run packaged Launch.exe".
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Workbench: run packaged Launch.exe",
+      "type": "process",
+      "command": "${workspaceFolder}/Launch.exe",
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": { "reveal": "silent", "panel": "dedicated" },
+      "group": { "kind": "test", "isDefault": true }
+    },
+    {
+      "label": "Workbench: build from source (CMake, Release)",
+      "type": "shell",
+      "command": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && ctest --test-dir build -C Release --output-on-failure",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": ["$gcc", "$msCompile"],
+      "group": "build"
+    }
+  ]
+}

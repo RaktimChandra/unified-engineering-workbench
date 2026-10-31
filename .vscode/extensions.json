@@ -1,0 +1,4 @@
+{
+  // Only needed for the F5 launch configuration; the task works without it.
+  "recommendations": ["ms-vscode.cpptools"]
+}
