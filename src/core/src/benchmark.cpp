@@ -44,14 +44,19 @@ Report run(const Config& cfg_in, const ProgressFn& progress, const CancelToken* 
     // Reference: plain serial loop (no pool, no threads).
     Row serial;
     serial.variant = "serial";
-    par::BatchResult reference;
+    // Output buffers are allocated and first touched before timing starts (and
+    // during the warm-up run), so the timed region measures solving, not
+    // page-fault handling for a freshly mapped multi-megabyte array.
+    par::BatchResult reference, work;
+    par::prepare(reference, cases.size(), ne);
+    par::prepare(work, cases.size(), ne);
+    std::fill(work.temperatures.begin(), work.temperatures.end(), 0.0);
     for (int r = 0; r < warm + reps; ++r) {
         throw_if_cancelled(cancel);
         auto s = clock::now();
-        par::BatchResult res = par::run_serial(cases, ne, cancel);
+        par::run_serial_into(cases, ne, r == 0 ? reference : work, cancel);
         const double dt = std::chrono::duration<double>(clock::now() - s).count();
         if (r >= warm) serial.seconds.push_back(dt);
-        if (r == 0) reference = std::move(res);
         tick(r < warm ? "serial warm-up" : "serial run " + std::to_string(r - warm + 1));
     }
     serial.median_s = median(serial.seconds);
@@ -68,11 +73,12 @@ Report run(const Config& cfg_in, const ProgressFn& progress, const CancelToken* 
         double worst = 0;
         for (int r = 0; r < warm + reps; ++r) {
             throw_if_cancelled(cancel);
+            std::fill(work.temperatures.begin(), work.temperatures.end(), -1.0); // stale data cannot pass the check
             auto s = clock::now();
-            par::BatchResult res = par::run_parallel(pool, cases, ne, cancel);
+            par::run_parallel_into(pool, cases, ne, work, cancel);
             const double dt = std::chrono::duration<double>(clock::now() - s).count();
             if (r >= warm) row.seconds.push_back(dt);
-            worst = std::max(worst, par::max_abs_difference(reference, res)); // outside timing
+            worst = std::max(worst, par::max_abs_difference(reference, work)); // outside timing
             tick(std::to_string(p) + "-worker " + (r < warm ? "warm-up" : "run " + std::to_string(r - warm + 1)));
         }
         row.median_s = median(row.seconds);

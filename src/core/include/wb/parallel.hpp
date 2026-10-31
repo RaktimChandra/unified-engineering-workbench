@@ -16,8 +16,8 @@ namespace wb::par {
 
 struct BatchSpec {
     std::uint64_t seed = 20261101;
-    std::size_t cases = 2000;
-    std::size_t elements = 2000;   ///< mesh size per solve
+    std::size_t cases = 4000;
+    std::size_t elements = 4000;   ///< mesh size per solve
     double k_min = 0.5, k_max = 400.0;   ///< W/(m K), positive
     double q_min = 1e3, q_max = 1e5;     ///< W/m^3, positive
 };
@@ -73,6 +73,17 @@ private:
     bool stop_ = false;
 };
 
+/// Allocates (or reuses) `out` with the right shape. Kept separate from the
+/// solve loops so benchmarks can exclude allocation and first-touch page
+/// faults from the timed region.
+void prepare(BatchResult& out, std::size_t cases, std::size_t elements);
+
+void run_serial_into(const std::vector<BatchCase>& cases, std::size_t elements, BatchResult& out,
+                     const CancelToken* cancel = nullptr);
+void run_parallel_into(WorkerPool& pool, const std::vector<BatchCase>& cases, std::size_t elements,
+                       BatchResult& out, const CancelToken* cancel = nullptr);
+
+/// Convenience wrappers that allocate a fresh result.
 BatchResult run_serial(const std::vector<BatchCase>& cases, std::size_t elements,
                        const CancelToken* cancel = nullptr);
 BatchResult run_parallel(WorkerPool& pool, const std::vector<BatchCase>& cases, std::size_t elements,

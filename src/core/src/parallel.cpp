@@ -101,40 +101,50 @@ void WorkerPool::parallel_for(std::size_t count, std::size_t chunk,
     throw_if_cancelled(cancel);
 }
 
-namespace {
-BatchResult make_result(std::size_t cases, std::size_t elements) {
-    BatchResult r;
+void prepare(BatchResult& r, std::size_t cases, std::size_t elements) {
     r.cases = cases;
     r.nodes = elements + 1;
-    r.temperatures.assign(cases * r.nodes, 0.0);
-    return r;
+    r.temperatures.resize(cases * r.nodes); // no-op when the shape is unchanged
 }
-} // namespace
 
-BatchResult run_serial(const std::vector<BatchCase>& cases, std::size_t elements, const CancelToken* cancel) {
-    BatchResult r = make_result(cases.size(), elements);
+void run_serial_into(const std::vector<BatchCase>& cases, std::size_t elements, BatchResult& r,
+                     const CancelToken* cancel) {
+    prepare(r, cases.size(), elements);
     fea::Scratch scratch;
     for (std::size_t i = 0; i < cases.size(); ++i) {
         if ((i & 63) == 0) throw_if_cancelled(cancel);
         fea::solve_into(cases[i].problem, elements, &r.temperatures[i * r.nodes], scratch);
     }
-    return r;
 }
 
-BatchResult run_parallel(WorkerPool& pool, const std::vector<BatchCase>& cases, std::size_t elements,
-                         const CancelToken* cancel) {
-    BatchResult r = make_result(cases.size(), elements);
+void run_parallel_into(WorkerPool& pool, const std::vector<BatchCase>& cases, std::size_t elements, BatchResult& r,
+                       const CancelToken* cancel) {
+    prepare(r, cases.size(), elements);
     // One scratch buffer per worker: no locks, no shared mutable state. Each
     // case writes only its own slice of r.temperatures, so output order equals
     // input order regardless of which thread solved it.
     std::vector<fea::Scratch> scratch(pool.size());
     const std::size_t chunk = std::max<std::size_t>(1, cases.size() / (pool.size() * 16));
+    double* out = r.temperatures.data();
+    const std::size_t nodes = r.nodes;
     pool.parallel_for(
         cases.size(), chunk,
         [&](std::size_t i, std::size_t worker) {
-            fea::solve_into(cases[i].problem, elements, &r.temperatures[i * r.nodes], scratch[worker]);
+            fea::solve_into(cases[i].problem, elements, out + i * nodes, scratch[worker]);
         },
         cancel);
+}
+
+BatchResult run_serial(const std::vector<BatchCase>& cases, std::size_t elements, const CancelToken* cancel) {
+    BatchResult r;
+    run_serial_into(cases, elements, r, cancel);
+    return r;
+}
+
+BatchResult run_parallel(WorkerPool& pool, const std::vector<BatchCase>& cases, std::size_t elements,
+                         const CancelToken* cancel) {
+    BatchResult r;
+    run_parallel_into(pool, cases, elements, r, cancel);
     return r;
 }
 
