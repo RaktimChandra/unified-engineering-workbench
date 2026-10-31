@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460" font-family="Helvetica, Arial, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="78" y="26" font-size="16" font-weight="600" fill="#1b1f24">Task F: training loss, single sample (x=1, y=2), learning rate 0.1</text>
+<line x1="78" y1="44" x2="78" y2="384" stroke="#e6e8eb"/>
+<text x="78" y="402" font-size="11" text-anchor="middle" fill="#444">0</text>
+<line x1="209.6" y1="44" x2="209.6" y2="384" stroke="#e6e8eb"/>
+<text x="209.6" y="402" font-size="11" text-anchor="middle" fill="#444">20</text>
+<line x1="341.2" y1="44" x2="341.2" y2="384" stroke="#e6e8eb"/>
+<text x="341.2" y="402" font-size="11" text-anchor="middle" fill="#444">40</text>
+<line x1="472.8" y1="44" x2="472.8" y2="384" stroke="#e6e8eb"/>
+<text x="472.8" y="402" font-size="11" text-anchor="middle" fill="#444">60</text>
+<line x1="604.4" y1="44" x2="604.4" y2="384" stroke="#e6e8eb"/>
+<text x="604.4" y="402" font-size="11" text-anchor="middle" fill="#444">80</text>
+<line x1="736" y1="44" x2="736" y2="384" stroke="#e6e8eb"/>
+<text x="736" y="402" font-size="11" text-anchor="middle" fill="#444">100</text>
+<line x1="78" y1="384" x2="736" y2="384" stroke="#e6e8eb"/>
+<text x="70" y="388" font-size="11" text-anchor="end" fill="#444">1e-20</text>
+<line x1="78" y1="367.81" x2="736" y2="367.81" stroke="#e6e8eb"/>
+<text x="70" y="371.81" font-size="11" text-anchor="end" fill="#444">1e-19</text>
+<line x1="78" y1="351.619" x2="736" y2="351.619" stroke="#e6e8eb"/>
+<text x="70" y="355.619" font-size="11" text-anchor="end" fill="#444">1e-18</text>
+<line x1="78" y1="335.429" x2="736" y2="335.429" stroke="#e6e8eb"/>
+<text x="70" y="339.429" font-size="11" text-anchor="end" fill="#444">1e-17</text>
+<line x1="78" y1="319.238" x2="736" y2="319.238" stroke="#e6e8eb"/>
+<text x="70" y="323.238" font-size="11" text-anchor="end" fill="#444">1e-16</text>
+<line x1="78" y1="303.048" x2="736" y2="303.048" stroke="#e6e8eb"/>
+<text x="70" y="307.048" font-size="11" text-anchor="end" fill="#444">1e-15</text>
+<line x1="78" y1="286.857" x2="736" y2="286.857" stroke="#e6e8eb"/>
+<text x="70" y="290.857" font-size="11" text-anchor="end" fill="#444">1e-14</text>
+<line x1="78" y1="270.667" x2="736" y2="270.667" stroke="#e6e8eb"/>
+<text x="70" y="274.667" font-size="11" text-anchor="end" fill="#444">1e-13</text>
+<line x1="78" y1="254.476" x2="736" y2="254.476" stroke="#e6e8eb"/>
+<text x="70" y="258.476" font-size="11" text-anchor="end" fill="#444">1e-12</text>
+<line x1="78" y1="238.286" x2="736" y2="238.286" stroke="#e6e8eb"/>
+<text x="70" y="242.286" font-size="11" text-anchor="end" fill="#444">1e-11</text>
+<line x1="78" y1="222.095" x2="736" y2="222.095" stroke="#e6e8eb"/>
+<text x="70" y="226.095" font-size="11" text-anchor="end" fill="#444">1e-10</text>
+<line x1="78" y1="205.905" x2="736" y2="205.905" stroke="#e6e8eb"/>
+<text x="70" y="209.905" font-size="11" text-anchor="end" fill="#444">1e-9</text>
+<line x1="78" y1="189.714" x2="736" y2="189.714" stroke="#e6e8eb"/>
+<text x="70" y="193.714" font-size="11" text-anchor="end" fill="#444">1e-8</text>
+<line x1="78" y1="173.524" x2="736" y2="173.524" stroke="#e6e8eb"/>
+<text x="70" y="177.524" font-size="11" text-anchor="end" fill="#444">1e-7</text>
+<line x1="78" y1="157.333" x2="736" y2="157.333" stroke="#e6e8eb"/>
+<text x="70" y="161.333" font-size="11" text-anchor="end" fill="#444">1e-6</text>
+<line x1="78" y1="141.143" x2="736" y2="141.143" stroke="#e6e8eb"/>
+<text x="70" y="145.143" font-size="11" text-anchor="end" fill="#444">1e-5</text>
+<line x1="78" y1="124.952" x2="736" y2="124.952" stroke="#e6e8eb"/>
+<text x="70" y="128.952" font-size="11" text-anchor="end" fill="#444">1e-4</text>
+<line x1="78" y1="108.762" x2="736" y2="108.762" stroke="#e6e8eb"/>
+<text x="70" y="112.762" font-size="11" text-anchor="end" fill="#444">1e-3</text>
+<line x1="78" y1="92.5714" x2="736" y2="92.5714" stroke="#e6e8eb"/>
+<text x="70" y="96.5714" font-size="11" text-anchor="end" fill="#444">0.01</text>
+<line x1="78" y1="76.381" x2="736" y2="76.381" stroke="#e6e8eb"/>
+<text x="70" y="80.381" font-size="11" text-anchor="end" fill="#444">0.1</text>
+<line x1="78" y1="60.1905" x2="736" y2="60.1905" stroke="#e6e8eb"/>
+<text x="70" y="64.1905" font-size="11" text-anchor="end" fill="#444">1</text>
+<line x1="78" y1="44" x2="736" y2="44" stroke="#e6e8eb"/>
+<text x="70" y="48" font-size="11" text-anchor="end" fill="#444">10</text>
+<rect x="78" y="44" width="658" height="340" fill="none" stroke="#8a9099"/>
+<text x="407" y="424" font-size="13" text-anchor="middle" fill="#1b1f24">Gradient-descent step</text>
+<text transform="translate(18,214) rotate(-90)" font-size="13" text-anchor="middle" fill="#1b1f24">Loss  J = 0.5 (y_hat - y)^2  [-]</text>
+<polyline fill="none" stroke="#6a4c93" stroke-width="1.8" points="78,59.01154 84.58,62.84279 91.16,66.34606 97.74,69.71524 104.32,73.01976 110.9,76.28871 117.48,79.53621 124.06,82.76985 130.64,85.99409 137.22,89.21173 143.8,92.4246 150.38,95.63394 156.96,98.84063 163.54,102.0453 170.12,105.2484 176.7,108.4504 183.28,111.6514 189.86,114.8517 196.44,118.0514 203.02,121.2506 209.6,124.4495 216.18,127.6482 222.76,130.8466 229.34,134.0448 235.92,137.2429 242.5,140.4408 249.08,143.6387 255.66,146.8365 262.24,150.0343 268.82,153.232 275.4,156.4297 281.98,159.6273 288.56,162.825 295.14,166.0226 301.72,169.2202 308.3,172.4178 314.88,175.6153 321.46,178.8129 328.04,182.0105 334.62,185.208 341.2,188.4056 347.78,191.6031 354.36,194.8007 360.94,197.9982 367.52,201.1958 374.1,204.3933 380.68,207.5909 387.26,210.7884 393.84,213.986 400.42,217.1835 407,220.381 413.58,223.5786 420.16,226.7761 426.74,229.9737 433.32,233.1712 439.9,236.3687 446.48,239.5663 453.06,242.7638 459.64,245.9614 466.22,249.1589 472.8,252.3565 479.38,255.554 485.96,258.7515 492.54,261.9491 499.12,265.1466 505.7,268.3442 512.28,271.5417 518.86,274.7392 525.44,277.9368 532.02,281.1343 538.6,284.3319 545.18,287.5294 551.76,290.7269 558.34,293.9245 564.92,297.122 571.5,300.3196 578.08,303.5171 584.66,306.7146 591.24,309.9122 597.82,313.1097 604.4,316.3073 610.98,319.5048 617.56,322.7023 624.14,325.8999 630.72,329.0974 637.3,332.295 643.88,335.4925 650.46,338.6901 657.04,341.8876 663.62,345.0851 670.2,348.2827 676.78,351.4802 683.36,354.6778 689.94,357.8753 696.52,361.0728 703.1,364.2704 709.68,367.4679 716.26,370.6655 722.84,373.863 729.42,377.0605 736,380.2581 "/>
+<rect x="478" y="52" width="250" height="28" fill="#ffffff" fill-opacity="0.92" stroke="#c9ced6"/>
+<line x1="486" y1="63" x2="510" y2="63" stroke="#6a4c93" stroke-width="2"/>
+<text x="518" y="67" font-size="11.5" fill="#1b1f24">J after each step (step 0 = initial parameters)</text>
+<text x="78" y="448" font-size="10.5" fill="#5b616b">Log scale. J(0) = 1.18254, J(1) = 0.685774, J(100) = 1.703e-20</text>
+</svg>
