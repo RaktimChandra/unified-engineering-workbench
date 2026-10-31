@@ -78,7 +78,9 @@ int main(int argc, char** argv) {
     api.log().add("INFO", "Unified Engineering Workbench " + cfg.version + " starting");
     api.log().add("INFO", "web root: " + web_root.filename().string() + ", data: " +
                               (data_dir.empty() ? std::string("(none)") : data_dir.filename().string()) +
-                              ", logs: " + logs.string());
+                              ", logs: " +
+                              (logs == exe / "logs" ? std::string("logs/ next to Launch.exe")
+                                                    : std::string("temp folder (exe folder is read-only)")));
 
     httplib::Server server;
     api.register_routes(server);

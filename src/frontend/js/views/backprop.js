@@ -48,7 +48,9 @@ Update (simultaneous, original gradients):
   run();
 }
 
+let busy = false;
 async function run() {
+  if (busy) return; // ignore a second click while the first job is in flight
   const steps = Number(root.querySelector("#b-steps").value), lr = Number(root.querySelector("#b-lr").value);
   const errs = [];
   if (!Number.isInteger(steps) || steps < 1 || steps > 100000) errs.push("steps must be an integer 1..100000.");
@@ -57,7 +59,13 @@ async function run() {
   if (errs.length) return;
   root.querySelector("#b-msg").innerHTML = "";
   try {
-    const { id, status } = await runJob("Backprop", "/api/backprop/run", { steps, learning_rate: lr }).promise;
+    busy = true;
+    const btn = root.querySelector("#b-run");
+    if (btn) btn.disabled = true;
+    const { id, status } = await runJob("Backprop", "/api/backprop/run", { steps, learning_rate: lr }).promise.finally(() => {
+      busy = false;
+      if (btn) btn.disabled = false;
+    });
     render(status.result, id, status.exports);
   } catch (e) { root.querySelector("#b-msg").innerHTML = errorCard(e.info, "Backprop run failed"); }
 }

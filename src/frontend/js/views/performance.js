@@ -16,8 +16,8 @@ export async function mount(el) {
       <div class="card">
         <h3>Workload</h3>
         <form id="p-form" novalidate>
-          <div class="field"><label for="p-cases">Cases</label><input type="number" id="p-cases" value="2000" min="1" step="1"><span class="unit">solves</span></div>
-          <div class="field"><label for="p-elements">Mesh size</label><input type="number" id="p-elements" value="2000" min="1" step="1"><span class="unit">elements</span></div>
+          <div class="field"><label for="p-cases">Cases</label><input type="number" id="p-cases" value="4000" min="1" step="1"><span class="unit">solves</span></div>
+          <div class="field"><label for="p-elements">Mesh size</label><input type="number" id="p-elements" value="4000" min="1" step="1"><span class="unit">elements</span></div>
           <div class="field"><label for="p-seed">Seed</label><input type="number" id="p-seed" value="20261101" min="0" step="1"><span class="unit">mt19937_64</span></div>
           <div class="field"><label for="p-warm">Warm-up runs</label><input type="number" id="p-warm" value="1" min="0" max="10" step="1"><span class="unit">discarded</span></div>
           <div class="field"><label for="p-runs">Measured runs</label><input type="number" id="p-runs" value="5" min="1" max="50" step="1"><span class="unit">median</span></div>
