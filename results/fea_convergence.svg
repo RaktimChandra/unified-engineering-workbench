@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460" font-family="Helvetica, Arial, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="78" y="26" font-size="16" font-weight="600" fill="#1b1f24">Task C: mesh convergence (log-log)</text>
+<line x1="78" y1="44" x2="78" y2="384" stroke="#e6e8eb"/>
+<text x="78" y="402" font-size="11" text-anchor="middle" fill="#444">0.01</text>
+<line x1="736" y1="44" x2="736" y2="384" stroke="#e6e8eb"/>
+<text x="736" y="402" font-size="11" text-anchor="middle" fill="#444">0.1</text>
+<line x1="78" y1="384" x2="736" y2="384" stroke="#e6e8eb"/>
+<text x="70" y="388" font-size="11" text-anchor="end" fill="#444">0.01</text>
+<line x1="78" y1="270.667" x2="736" y2="270.667" stroke="#e6e8eb"/>
+<text x="70" y="274.667" font-size="11" text-anchor="end" fill="#444">0.1</text>
+<line x1="78" y1="157.333" x2="736" y2="157.333" stroke="#e6e8eb"/>
+<text x="70" y="161.333" font-size="11" text-anchor="end" fill="#444">1</text>
+<line x1="78" y1="44" x2="736" y2="44" stroke="#e6e8eb"/>
+<text x="70" y="48" font-size="11" text-anchor="end" fill="#444">10</text>
+<rect x="78" y="44" width="658" height="340" fill="none" stroke="#8a9099"/>
+<text x="407" y="424" font-size="13" text-anchor="middle" fill="#1b1f24">Element size  h  [m]</text>
+<text transform="translate(18,214) rotate(-90)" font-size="13" text-anchor="middle" fill="#1b1f24">Error  [°C]  (L2: °C·m^0.5)</text>
+<polyline fill="none" stroke="#d1495b" stroke-width="1.8" points="736,146.3502 537.9223,214.5837 339.8445,282.8171 141.7668,351.0506 "/>
+<circle cx="736" cy="146.3502" r="3.2" fill="#fff" stroke="#d1495b" stroke-width="1.5"/>
+<circle cx="537.9223" cy="214.5837" r="3.2" fill="#fff" stroke="#d1495b" stroke-width="1.5"/>
+<circle cx="339.8445" cy="282.8171" r="3.2" fill="#fff" stroke="#d1495b" stroke-width="1.5"/>
+<circle cx="141.7668" cy="351.0506" r="3.2" fill="#fff" stroke="#d1495b" stroke-width="1.5"/>
+<polyline fill="none" stroke="#00798c" stroke-width="1.8" points="736,161.8203 537.9223,230.0537 339.8445,298.2872 141.7668,366.5207 "/>
+<circle cx="736" cy="161.8203" r="3.2" fill="#fff" stroke="#00798c" stroke-width="1.5"/>
+<circle cx="537.9223" cy="230.0537" r="3.2" fill="#fff" stroke="#00798c" stroke-width="1.5"/>
+<circle cx="339.8445" cy="298.2872" r="3.2" fill="#fff" stroke="#00798c" stroke-width="1.5"/>
+<circle cx="141.7668" cy="366.5207" r="3.2" fill="#fff" stroke="#00798c" stroke-width="1.5"/>
+<polyline fill="none" stroke="#777777" stroke-width="1.8" stroke-dasharray="6 4" points="736,146.3502 537.9223,214.5837 339.8445,282.8171 141.7668,351.0506 "/>
+<rect x="478" y="52" width="250" height="64" fill="#ffffff" fill-opacity="0.92" stroke="#c9ced6"/>
+<line x1="486" y1="63" x2="510" y2="63" stroke="#d1495b" stroke-width="2"/>
+<text x="518" y="67" font-size="11.5" fill="#1b1f24">max |error| at element midpoints</text>
+<line x1="486" y1="81" x2="510" y2="81" stroke="#00798c" stroke-width="2"/>
+<text x="518" y="85" font-size="11.5" fill="#1b1f24">L2 error norm</text>
+<line x1="486" y1="99" x2="510" y2="99" stroke="#777777" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="518" y="103" font-size="11.5" fill="#1b1f24">reference slope h^2 (125 h^2)</text>
+<text x="78" y="448" font-size="10.5" fill="#5b616b">Nodal error is at round-off level (~1e-13 C) and cannot be shown on this axis; see CSV.</text>
+</svg>
