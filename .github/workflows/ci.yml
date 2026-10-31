@@ -1,0 +1,62 @@
+# Continuous integration: builds and tests on every push and pull request.
+#  - linux-gcc / linux-clang: native Release build, full doctest suite via ctest
+#  - windows-cross: the exact MinGW-w64 static build used for the packaged Launch.exe,
+#    whose test binary is executed under Wine; Launch.exe is uploaded as an artifact
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  linux:
+    name: linux-${{ matrix.compiler }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install toolchain
+        run: sudo apt-get update && sudo apt-get install -y ninja-build clang
+      - name: Configure
+        run: |
+          if [ "${{ matrix.compiler }}" = "clang" ]; then export CXX=clang++; else export CXX=g++; fi
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+      - name: Regenerate Task C / F evidence and compare with committed results
+        run: |
+          ./build/wb_cli fea /tmp/r && ./build/wb_cli backprop /tmp/r
+          diff results/fea_convergence.csv /tmp/r/fea_convergence.csv
+          diff results/backprop_gradcheck.csv /tmp/r/backprop_gradcheck.csv
+
+  windows-cross:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install MinGW-w64 and Wine
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install -y ninja-build g++-mingw-w64-x86-64-posix wine64
+      - name: Configure (static runtime, as packaged)
+        run: >
+          cmake -S . -B build-win -G Ninja -DCMAKE_BUILD_TYPE=Release -DWB_STATIC_RUNTIME=ON
+          -DCMAKE_TOOLCHAIN_FILE=cmake/mingw-w64-x86_64.cmake
+      - name: Build
+        run: cmake --build build-win
+      - name: Check DLL imports (Windows system DLLs only)
+        run: x86_64-w64-mingw32-objdump -p build-win/Launch.exe | grep "DLL Name"
+      - name: Test the Windows binary under Wine
+        run: WINEDEBUG=-all wine64 build-win/wb_tests.exe || WINEDEBUG=-all wine build-win/wb_tests.exe
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Launch-windows-x64
+          path: |
+            build-win/Launch.exe
+            build-win/wb_cli.exe
+            build-win/wb_tests.exe

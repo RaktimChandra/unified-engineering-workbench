@@ -1,0 +1,14 @@
+# Normalise text line endings; keep Windows-only files as CRLF.
+* text=auto
+*.rc   text eol=crlf
+*.bat  text eol=crlf
+# Binary evidence and assets
+*.pdf  binary
+*.mp4  binary
+*.jpg  binary
+*.png  binary
+*.exe  binary
+*.bundle binary
+# Vendored code: exclude from GitHub language statistics
+third_party/** linguist-vendored
+src/frontend/vendor/** linguist-vendored

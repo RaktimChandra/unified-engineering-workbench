@@ -9,6 +9,11 @@ user interface is a local web page served by the same executable.
 
 > Candidate ID: RA2311033010038 · Target: Windows 11 x64 · Version 1.0.0
 
+![CI](https://github.com/RaktimChandra/unified-engineering-workbench/actions/workflows/ci.yml/badge.svg)
+![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C)
+![Platform](https://img.shields.io/badge/platform-Windows%2011%20x64-0078D6)
+![Tests](https://img.shields.io/badge/tests-60%20passing-2ea44f)
+
 ---
 
 ## 1. One-click start (Windows 11 x64)
@@ -132,6 +137,22 @@ The tests can also be run without building: `app\bin\wb_tests.exe`, run from the
 They comprise 60 doctest cases: positive, negative, numerical and HTTP integration tests. They pass
 on GCC 13, Clang and MinGW-w64. See `docs/TESTING.md`.
 
+### Repository and continuous integration
+
+Source: https://github.com/RaktimChandra/unified-engineering-workbench
+
+```sh
+git clone https://github.com/RaktimChandra/unified-engineering-workbench.git
+```
+
+`.github/workflows/ci.yml` runs on every push and covers three things:
+
+* Release builds with GCC and Clang, plus the full test suite.
+* A check that Task C and Task F results still match the committed CSVs byte for byte.
+* The static MinGW-w64 Windows build. It confirms that `Launch.exe` imports only system DLLs and runs `wb_tests.exe` under Wine.
+
+The packaged Windows ZIP is attached to the `v1.0.0` release.
+
 ---
 
 ## 6. Folder layout
@@ -151,6 +172,7 @@ on GCC 13, Clang and MinGW-w64. See `docs/TESTING.md`.
 | `vcs/` | Git bundle and readable commit log |
 | `cmake/`, `packaging/`, `scripts/` | cross-compile toolchain, Windows resources, packaging script |
 | `.vscode/` | run configurations (also read by Antigravity) |
+| `.github/workflows/` | CI: Linux GCC/Clang build and test, Windows cross-build tested under Wine |
 | `CMakeLists.txt`, `DEPENDENCIES.lock` | build definition and pinned dependency versions and hashes |
 
 All paths in the project are relative, and no credentials or personal data are stored.
