@@ -14,3 +14,9 @@
   Fix: allocate once with par::prepare(), touch it during warm-up, reuse it across
   repetitions, and poison the parallel buffer with -1 before every run so a stale
   buffer can never pass the agreement check. Result: 1.90-1.95x on 2 workers.
+
+- 2026-11-01 first run on the candidate's Windows 11 laptop (AMD Ryzen 7 6800H, 8C/16T):
+  speedup 1.93 / 3.75 / 7.21 on 2 / 4 / 8 workers, serial-parallel difference 0.0 C.
+  The report footer showed "Radeon Graphics         ," because AMD right-pads the CPUID
+  brand string; Intel CPUs (used during development) left-pad it, so only leading
+  spaces had been trimmed. Fixed in sys::query() (cpu_brand) to trim both ends.

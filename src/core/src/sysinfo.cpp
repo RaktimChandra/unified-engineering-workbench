@@ -56,8 +56,12 @@ std::string cpu_brand() {
     char s[49] = {0};
     std::memcpy(s, regs, 48);
     std::string out(s);
+    // Vendors pad the 48-byte brand string with spaces on either side
+    // (AMD pads at the end: "AMD Ryzen 7 6800H with Radeon Graphics         ").
     const auto first = out.find_first_not_of(' ');
-    return first == std::string::npos ? "unknown" : out.substr(first);
+    if (first == std::string::npos) return "unknown";
+    const auto last = out.find_last_not_of(' ');
+    return out.substr(first, last - first + 1);
 }
 
 std::string compiler_id() {
