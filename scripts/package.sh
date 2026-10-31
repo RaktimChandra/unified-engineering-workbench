@@ -53,8 +53,9 @@ Ignored by design (\`.gitignore\`): build trees, packaged binaries and runtime l
 EOF
 
 # 5. guard: no absolute machine paths or credentials in text files
-if grep -rIl --exclude-dir=vendor --exclude-dir=third_party --exclude=*.bundle -e "/home/claude" -e "C:\\\\Users\\\\" "$OUT" ; then
-  echo "absolute path found in package (see above)"; exit 1
+BUILD_ROOT="$ROOT"
+if grep -rl --exclude=*.bundle --exclude=package.sh -F "$BUILD_ROOT" "$OUT" ; then
+  echo "build-machine absolute path found in package (see above)"; exit 1
 fi
 
 # 6. zip

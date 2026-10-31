@@ -21,6 +21,13 @@ string(TOUPPER "${CMAKE_BUILD_TYPE}" _bt)
 set(WB_FLAGS_STRING "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_${_bt}}")
 string(STRIP "${WB_FLAGS_STRING}" WB_FLAGS_STRING)
 
+# Reproducible, path-independent binaries: __FILE__ (used by doctest and
+# assertions) is recorded relative to the source root, so no build-machine
+# path ends up inside the shipped executables.
+if(NOT MSVC)
+  add_compile_options("-ffile-prefix-map=${PROJECT_SOURCE_DIR}/=")
+endif()
+
 # ---------------------------------------------------------------- warnings --
 add_library(wb_warnings INTERFACE)
 if(MSVC)
