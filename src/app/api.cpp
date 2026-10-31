@@ -284,7 +284,8 @@ void Api::register_routes(httplib::Server& srv) {
     });
     srv.set_logger([this](const httplib::Request& req, const httplib::Response& res) {
         if (req.path.rfind("/api/", 0) == 0 && req.path != "/api/heartbeat" && req.path != "/api/log" &&
-            req.path.rfind("/api/jobs/", 0) != 0)
+            req.path.rfind("/api/jobs/", 0) != 0 &&
+            req.path.find("/telemetry") == std::string::npos) // 1 Hz polling would flood the console
             log_.add(res.status >= 400 ? "WARN" : "INFO", req.method + " " + req.path + " -> " + std::to_string(res.status));
     });
 
