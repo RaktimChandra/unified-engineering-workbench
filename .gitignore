@@ -1,0 +1,11 @@
+# build trees
+/build*/
+/out/
+/dist/
+# editor / OS noise
+.vs/
+*.swp
+.DS_Store
+Thumbs.db
+# runtime logs written next to the exe
+/logs/

@@ -1,0 +1,23 @@
+// Windows resources for Launch.exe (version info shown in Explorer > Properties).
+#include <winver.h>
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "FileDescription", "Unified Engineering Workbench launcher\0"
+      VALUE "ProductName", "Unified Engineering Workbench\0"
+      VALUE "FileVersion", "1.0.0\0"
+      VALUE "OriginalFilename", "Launch.exe\0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END
