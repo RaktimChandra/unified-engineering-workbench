@@ -1,0 +1,23 @@
+{
+  "generated_by": "wb_cli gen-examples (self-created data, CC0-1.0)",
+  "examples": [
+    {"name": "heatsink_fins.stl", "kind": "stl", "valid": true, "units": "mm (STL is unitless; chosen on import)", "provenance": "self-created by wb_cli gen-examples", "description": "Finned heat sink, 6 fins, closed 2-manifold. Units: millimetres."},
+    {"name": "plate_open.stl", "kind": "stl", "valid": true, "units": "mm (STL is unitless; chosen on import)", "provenance": "self-created by wb_cli gen-examples", "description": "Two-triangle open plate (valid, triggers the open-mesh warning)."},
+    {"name": "heatsink_nodal_temperature_SYNTHETIC.csv", "kind": "csv", "valid": true, "units": "m, deg C", "provenance": "self-created by wb_cli gen-examples", "description": "SYNTHETIC nodal temperatures on the heat-sink volume (analytic fin model, not an ANSYS export). SI metres, C."},
+    {"name": "malformed/stl_empty.stl", "kind": "stl", "valid": false, "units": "mm (STL is unitless; chosen on import)", "provenance": "self-created by wb_cli gen-examples", "description": "0-byte file"},
+    {"name": "malformed/stl_nan_vertex.stl", "kind": "stl", "valid": false, "units": "mm (STL is unitless; chosen on import)", "provenance": "self-created by wb_cli gen-examples", "description": "NaN coordinate on line 5"},
+    {"name": "malformed/stl_truncated.stl", "kind": "stl", "valid": false, "units": "mm (STL is unitless; chosen on import)", "provenance": "self-created by wb_cli gen-examples", "description": "File ends inside a facet"},
+    {"name": "malformed/stl_four_vertices.stl", "kind": "stl", "valid": false, "units": "mm (STL is unitless; chosen on import)", "provenance": "self-created by wb_cli gen-examples", "description": "Quad instead of triangle"},
+    {"name": "malformed/stl_decimal_comma.stl", "kind": "stl", "valid": false, "units": "mm (STL is unitless; chosen on import)", "provenance": "self-created by wb_cli gen-examples", "description": "Decimal comma (regional settings)"},
+    {"name": "malformed/stl_no_facets.stl", "kind": "stl", "valid": false, "units": "mm (STL is unitless; chosen on import)", "provenance": "self-created by wb_cli gen-examples", "description": "Valid solid with no facets"},
+    {"name": "malformed/stl_binary.stl", "kind": "stl", "valid": false, "units": "mm (STL is unitless; chosen on import)", "provenance": "self-created by wb_cli gen-examples", "description": "Binary STL (unsupported by design)"},
+    {"name": "malformed/csv_empty.csv", "kind": "csv", "valid": false, "units": "m, deg C", "provenance": "self-created by wb_cli gen-examples", "description": "0-byte file"},
+    {"name": "malformed/csv_header_only.csv", "kind": "csv", "valid": false, "units": "m, deg C", "provenance": "self-created by wb_cli gen-examples", "description": "Header but no rows"},
+    {"name": "malformed/csv_bad_header.csv", "kind": "csv", "valid": false, "units": "m, deg C", "provenance": "self-created by wb_cli gen-examples", "description": "Wrong column names"},
+    {"name": "malformed/csv_nan_temperature.csv", "kind": "csv", "valid": false, "units": "m, deg C", "provenance": "self-created by wb_cli gen-examples", "description": "NaN temperature"},
+    {"name": "malformed/csv_duplicate_node.csv", "kind": "csv", "valid": false, "units": "m, deg C", "provenance": "self-created by wb_cli gen-examples", "description": "Repeated node_id"},
+    {"name": "malformed/csv_semicolon.csv", "kind": "csv", "valid": false, "units": "m, deg C", "provenance": "self-created by wb_cli gen-examples", "description": "Semicolon-delimited export"},
+    {"name": "malformed/csv_wrong_column_count.csv", "kind": "csv", "valid": false, "units": "m, deg C", "provenance": "self-created by wb_cli gen-examples", "description": "Missing value in a row"},
+    {"name": "malformed/csv_below_absolute_zero.csv", "kind": "csv", "valid": false, "units": "m, deg C", "provenance": "self-created by wb_cli gen-examples", "description": "Temperature below -273.15 C"}
+  ]
+}
