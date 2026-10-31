@@ -1,5 +1,7 @@
 #include <doctest/doctest.h>
 
+#include "test_support.hpp"
+
 #include "wb/stl.hpp"
 
 #include <cmath>
@@ -11,12 +13,7 @@
 using namespace wb::stl;
 
 namespace {
-std::string slurp(const std::string& rel) {
-    std::ifstream f(std::string(WB_DATA_DIR) + "/" + rel, std::ios::binary);
-    std::ostringstream o;
-    o << f.rdbuf();
-    return o.str();
-}
+using wb::test::slurp;
 const char* kTetra =
     "solid tetra\n"
     " facet normal 0 0 -1\n  outer loop\n   vertex 0 0 0\n   vertex 0 1 0\n   vertex 1 0 0\n  endloop\n endfacet\n"

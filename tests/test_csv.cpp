@@ -1,5 +1,7 @@
 #include <doctest/doctest.h>
 
+#include "test_support.hpp"
+
 #include "wb/nodal_csv.hpp"
 
 #include <fstream>
@@ -9,12 +11,7 @@ using namespace wb::nodal;
 
 namespace {
 const std::string kHdr = "node_id,x_m,y_m,z_m,temperature_C\n";
-std::string slurp(const std::string& rel) {
-    std::ifstream f(std::string(WB_DATA_DIR) + "/" + rel, std::ios::binary);
-    std::ostringstream o;
-    o << f.rdbuf();
-    return o.str();
-}
+using wb::test::slurp;
 } // namespace
 
 TEST_SUITE("nodal_csv") {

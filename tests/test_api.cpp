@@ -3,6 +3,7 @@
 #include <doctest/doctest.h>
 
 #include "api.hpp"
+#include "test_support.hpp"
 
 #include <httplib/httplib.h>
 #include <nlohmann/json.hpp>
@@ -17,7 +18,7 @@ namespace {
 struct Fixture {
     wb::app::Api api{[] {
         wb::app::ApiConfig c;
-        c.data_dir = WB_DATA_DIR;
+        c.data_dir = wb::test::data_dir();
         c.device_latency = std::chrono::milliseconds(0);
         return c;
     }()};
