@@ -20,6 +20,7 @@
 | GCC 13.3.0, Release | Linux x86-64 | 60/60 passed |
 | Clang 18.1.3, Release | Linux x86-64 | 60/60 passed, zero warnings |
 | MinGW-w64 GCC 13, static | Windows x64 binary executed under Wine 9.0 | 60/60 passed |
+| MinGW-w64 GCC 13, packaged `Launch.exe` | Windows 11 laptop (Ryzen 7 6800H) | launched; Performance benchmark agreement PASS (p = 1, 2, 4, 8) |
 
 All three builds use `-Wall -Wextra -Wpedantic -Wshadow` and produce zero warnings.
 

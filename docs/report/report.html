@@ -158,32 +158,35 @@ The tests prove each index is visited exactly once and that the work runs off th
 and the agreement comparison are excluded. 1 warm-up run (discarded), then 5 measured runs; the median is reported. Worker counts are
 capped at the logical CPU count.</p>
 <table>
-<tr><th>Host</th><td>Intel Xeon @ 2.10 GHz (container), <b>2 logical / 2 physical</b> cores, 7.8 GiB RAM, Linux 6.18</td></tr>
-<tr><th>Compiler</th><td>GCC 13.3.0, Release <code>-O3 -DNDEBUG</code>, C++17; the Windows exe uses MinGW-w64 GCC 13 with the same flags</td></tr>
-<tr><th>Launch→ready</th><td>11 ms native; 42 ms Windows exe under Wine (reported separately from compute)</td></tr>
+<tr><th>Host A (primary)</th><td><b>Windows 11 (build 26300)</b>, AMD Ryzen 7 6800H, <b>8 physical / 16 logical</b> cores, 31.3 GiB RAM: candidate's laptop, packaged <code>Launch.exe</code></td></tr>
+<tr><th>Host B</th><td>Linux container, Intel Xeon @ 2.10 GHz, 2 logical CPUs, 7.8 GiB (development machine)</td></tr>
+<tr><th>Compiler</th><td>GCC 13 (MinGW-w64 for Windows, native on Linux), Release <code>-O3 -DNDEBUG</code>, C++17</td></tr>
+<tr><th>Launch→ready</th><td>11 ms native Linux; 42–94 ms Windows exe under Wine (reported separately from compute)</td></tr>
 </table>
 </div>
 <div>
 <table>
-<tr><th>Variant</th><th class="n">p</th><th class="n">median [s]</th><th class="n">speedup T₁/T<sub>p</sub></th><th class="n">efficiency</th><th class="n">max |ΔT| [°C]</th></tr>
-<tr><td>serial loop</td><td class="n">1</td><td class="n">0.1848</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">-</td></tr>
-<tr><td>pool</td><td class="n">1</td><td class="n">0.1901</td><td class="n">0.972</td><td class="n">0.972</td><td class="n">0</td></tr>
-<tr><td>pool</td><td class="n">2</td><td class="n">0.0956</td><td class="n">1.934</td><td class="n">0.967</td><td class="n">0</td></tr>
-<tr><td>pool</td><td class="n">4</td><td class="n" colspan="4">skipped and disclosed: only 2 logical CPUs</td></tr>
+<tr><th>Host</th><th>Variant</th><th class="n">p</th><th class="n">median [s]</th><th class="n">speedup</th><th class="n">efficiency</th><th class="n">max |ΔT| [°C]</th></tr>
+<tr><td>A</td><td>serial loop</td><td class="n">1</td><td class="n">0.1382</td><td class="n">1.000</td><td class="n">1.000</td><td class="n">-</td></tr>
+<tr><td>A</td><td>pool</td><td class="n">1</td><td class="n">0.1387</td><td class="n">0.996</td><td class="n">0.996</td><td class="n">0</td></tr>
+<tr><td>A</td><td>pool</td><td class="n">2</td><td class="n">0.0705</td><td class="n">1.961</td><td class="n">0.981</td><td class="n">0</td></tr>
+<tr><td>A</td><td>pool</td><td class="n">4</td><td class="n">0.0369</td><td class="n">3.750</td><td class="n">0.938</td><td class="n">0</td></tr>
+<tr><td>A</td><td>pool</td><td class="n">8</td><td class="n">0.0192</td><td class="n"><b>7.213</b></td><td class="n">0.902</td><td class="n">0</td></tr>
+<tr><td>B</td><td>pool</td><td class="n">2</td><td class="n">0.0956</td><td class="n">1.934</td><td class="n">0.967</td><td class="n">0</td></tr>
 </table>
-<p class="small">Five runs each are in <code>results/benchmark.csv</code>; the host block is in <code>results/benchmark_host.txt</code>. Agreement: <span class="pass">PASS</span>, bitwise identical (0.0 ≤ 10⁻⁸ °C).
-Before each parallel run the buffer is filled with −1, so a stale result cannot pass.</p>
-<div class="fig">{{SVG:results/benchmark_speedup.svg}}<div class="cap">Fig. 3. Measured speedup against ideal.</div></div>
+<p class="small">Host A raw files: <code>results/windows11_ryzen7_6800h/</code>, two independent runs (p = 1,2,4 gave 1.93×/3.75×; p = 1,2,4,8 is shown above). Host B: <code>results/benchmark*</code> (p = 4 skipped and disclosed: 2 logical CPUs). Agreement: <span class="pass">PASS</span>, bitwise identical on both hosts. Before each parallel run the buffer is filled with −1, so a stale result cannot pass.</p>
+<div class="fig">{{SVG:results/windows11_ryzen7_6800h/benchmark_speedup_workers_1-2-4-8.svg}}<div class="cap">Fig. 3. Measured speedup against ideal on Host A, exported unmodified from the Performance view.</div></div>
 </div>
 </div>
-<p><b>Honest analysis.</b> (i) The 1-worker pool is about 3% slower than the plain loop. That is the overhead of the hand-off: a <code>std::function</code> call per case,
-atomic chunk claims and the condition-variable wake-up/join. (ii) Two workers reach 1.93× (97% efficiency) because the solves are independent,
-O(N) and cache-resident (2 × 32 KB scratch per worker). (iii) <b>Measurement bug found and fixed:</b> the first harness allocated a fresh 128 MB result array
-inside each timed run. Zero-filling and first-touch page faults are serialised by the OS and do not scale, so the speedup came out at only
-1.39× and 1.71× with a large spread (pre-fix CSVs kept in <code>results/dev/</code>). After allocating outside the timer and touching pages during the warm-up,
-the result is 1.90–1.95× in repeated runs. (iv) Limits: this is a shared 2-vCPU VM, so p = 4 cannot be assessed here, and
-noisy neighbours give about ±5% spread. At larger p, memory bandwidth for writing 128 MB of results, and SMT siblings sharing an FPU, are expected to bend the
-curve below ideal. The Performance view repeats this whole protocol on the assessor's machine and exports the same three files.</p>
+<p><b>Honest analysis.</b> (i) The 1-worker pool costs 0.4–3% against the plain loop. That is the hand-off overhead: a <code>std::function</code> call per case,
+atomic chunk claims and the condition-variable wake-up/join. (ii) Scaling is near-linear (7.21× on 8 physical cores, 90% efficiency) because the solves are independent,
+O(N) and cache-resident (2 × 32 KB scratch per worker), with no locks and no shared writes. (iii) The efficiency loss from 98% (p = 2) to 90% (p = 8) is expected:
+the all-core boost clock is lower than the 1–2-core boost on a mobile Ryzen, the 128 MB of results must be written through shared memory bandwidth, and the
+end-of-batch tail (chunks of ⌈cases/16p⌉) shortens as p grows. p = 16 would put two threads on each core (SMT) sharing an FPU and was not part of the protocol.
+(iv) <b>Measurement bug found and fixed:</b> the first harness allocated a fresh 128 MB result array inside each timed run. Zero-filling and first-touch page faults are
+serialised by the OS, which held 2-worker speedup at 1.39–1.71× on Host B (pre-fix CSVs kept in <code>results/dev/</code>). Allocating outside the timer fixed it.
+(v) The Windows run also showed that AMD right-pads the CPUID brand string, a trimming bug invisible on the Intel development host, now fixed.
+The Performance view repeats the whole protocol on any machine and exports the same three files.</p>
 
 <h2>5. Task E: embedded-system integration design</h2>
 <div class="fig wide">{{SVG:docs/figures/block_diagram.svg}}<div class="cap">Fig. 4. Host-connected bench: Windows 11 host, powered USB 2.0 hub, ST NUCLEO-F446RE, Digilent Arty A7-35T and SEGGER J-Link. Full pin and voltage table, grounding and bring-up plan: <code>docs/embedded_design.md</code>.</div></div>
@@ -255,7 +258,7 @@ That is expected for one data point and says nothing about generalisation.</p></
 <li><b>Backprop (6).</b></li>
 <li><b>HTTP integration (11):</b> real server: path traversal refused, cancel publishes nothing, self-test passes.</li>
 </ul>
-<p>Results: 60/60 on GCC 13.3, Clang 18 and the MinGW-w64 Windows binary under Wine, with zero compiler warnings at <code>-Wall -Wextra -Wpedantic -Wshadow</code>.
+<p>Results: 60/60 on GCC 13.3, Clang 18 and the MinGW-w64 Windows binary, with zero compiler warnings at <code>-Wall -Wextra -Wpedantic -Wshadow</code>.
 The shipped exe also contains a <b>Verify</b> view with 13 numerical self-checks, and <code>app\bin\wb_tests.exe</code> runs without a build.</p>
 <p><b>Evidence.</b></p>
 <ul>
@@ -268,8 +271,8 @@ The shipped exe also contains a <b>Verify</b> view with 13 numerical self-checks
 <div>
 <p><b>Limitations.</b></p>
 <ul>
-<li>The Windows exe was verified under Wine 9.0, not on physical Windows 11. Windows-specific code is confined to five API calls in <code>platform.cpp</code> and <code>sysinfo.cpp</code>.</li>
-<li>Benchmarks come from a 2-vCPU VM, so p = 4 is untested. The in-app benchmark is the reproducible path on other hardware.</li>
+<li>The packaged exe was run on a physical Windows 11 laptop (Ryzen 7 6800H) for the Task D results, and in a clean Wine prefix for the launch check. Other Windows hardware has not been tested.</li>
+<li>Speedup was measured up to p = 8 physical cores. SMT (p = 16) and NUMA systems were not measured.</li>
 <li>Binary STL is detected but not parsed (ASCII scope). Native CAD and ANSYS formats and mesh-to-result registration are out of scope.</li>
 <li>All hardware behaviour is simulated. Pinouts and IDCODEs are documented expectations, not measurements.</li>
 <li>The executable is unsigned, so SmartScreen asks "Run anyway" once.</li>

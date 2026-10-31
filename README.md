@@ -130,7 +130,7 @@ ctest --test-dir build --output-on-failure
 
 The tests can also be run without building: `app\bin\wb_tests.exe`, run from the extracted folder.
 They comprise 60 doctest cases: positive, negative, numerical and HTTP integration tests. They pass
-on GCC 13, Clang and MinGW-w64 (the Windows binary was run under Wine). See `docs/TESTING.md`.
+on GCC 13, Clang and MinGW-w64. See `docs/TESTING.md`.
 
 ---
 
@@ -146,7 +146,7 @@ on GCC 13, Clang and MinGW-w64 (the Windows binary was run under Wine). See `doc
 | `tests/` | doctest suites |
 | `third_party/` | pinned header-only libraries with their licences |
 | `data/` | example STL and CSV, malformed corpus, `manifest.json`, `PROVENANCE.md` |
-| `results/` | raw CSVs and labelled SVG/PNG plots for Tasks C, D and F; `dev/` keeps pre-fix measurements |
+| `results/` | raw CSVs and labelled SVG/PNG plots for Tasks C, D and F; `windows11_ryzen7_6800h/` holds the Windows 11 laptop benchmark; `dev/` keeps pre-fix measurements |
 | `docs/` | report, embedded design, build/testing/limits notes, AI-use log, ownership statement, walkthrough |
 | `vcs/` | Git bundle and readable commit log |
 | `cmake/`, `packaging/`, `scripts/` | cross-compile toolchain, Windows resources, packaging script |
@@ -159,12 +159,11 @@ All paths in the project are relative, and no credentials or personal data are s
 
 ## 7. Known limitations
 
-* **Benchmarks:** the committed results were measured on a 2-vCPU Linux container (GCC 13, `-O3`).
-  The 4-worker case is therefore skipped and disclosed. The Performance view reproduces the
-  measurement on any machine in one click and exports the same files.
-* **Windows testing:** `Launch.exe` was verified under Wine 9.0. The Windows-specific code paths are
-  small (`ShellExecuteW`, `GetModuleFileNameW`, `GetLogicalProcessorInformationEx`, `RtlGetVersion`).
-  Behaviour on a physical Windows 11 machine should match, but it was not observed by the build machine.
+* **Benchmarks:** measured on a Windows 11 laptop (AMD Ryzen 7 6800H, 8 cores / 16 threads) up to
+  8 workers: 1.96× / 3.75× / 7.21× for p = 2 / 4 / 8 (`results/windows11_ryzen7_6800h/`). Also measured on
+  a 2-vCPU Linux container (`results/benchmark*`). SMT (p = 16) and multi-socket machines were not measured.
+* **Windows coverage:** the packaged `Launch.exe` was run on one physical Windows 11 laptop and in a
+  clean Wine prefix. Other Windows hardware and configurations have not been tested.
 * **Binary STL** is detected and rejected with guidance rather than parsed, per the brief's ASCII scope.
 * **Rendering:** very large meshes (over about 2 M triangles) render slowly on integrated GPUs. Parsing
   stays fast (see `docs/file_limits.md`).
