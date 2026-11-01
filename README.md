@@ -168,7 +168,7 @@ The packaged Windows ZIP is attached to the `v1.0.0` release.
 | `third_party/` | pinned header-only libraries with their licences |
 | `data/` | example STL and CSV, malformed corpus, `manifest.json`, `PROVENANCE.md` |
 | `results/` | raw CSVs and labelled SVG/PNG plots for Tasks C, D and F; `windows11_ryzen7_6800h/` holds the Windows 11 laptop benchmark; `dev/` keeps pre-fix measurements |
-| `docs/` | report, embedded design, build/testing/limits notes, AI-use log, ownership statement, walkthrough |
+| `docs/` | report, handwritten Task F appendix (`appendix_handwritten/`), embedded design, build/testing/limits notes, AI-use log, ownership statement, walkthrough |
 | `vcs/` | Git bundle and readable commit log |
 | `cmake/`, `packaging/`, `scripts/` | cross-compile toolchain, Windows resources, packaging script |
 | `.vscode/` | run configurations (also read by Antigravity) |
