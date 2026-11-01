@@ -12,14 +12,13 @@
 | three.js r170 and OrbitControls (rendering only) | `src/frontend/vendor/three/` | MIT |
 | GCC/MinGW-w64 runtime, statically linked | inside the `.exe` files | GCC RLE / MIT-style |
 
-These are used unmodified and are pinned by hash in `DEPENDENCIES.lock`. Standard textbook material
+These are used unmodified and pinned by hash in `DEPENDENCIES.lock`. Standard textbook material
 (two-node linear element matrices, Thomas algorithm, IEEE CRC-32, Gauss–Legendre weights, the
-adiabatic-tip fin solution) was implemented from the underlying equations. It was not copied from
-other code.
+adiabatic-tip fin solution) was implemented from the underlying equations, not copied from other code.
 
 ## Work created for this submission
 
-Everything else was created for this assignment. That covers:
+Everything else was created for this assignment by the candidate:
 
 * the C++ core, HTTP layer and launcher (`src/core`, `src/app`);
 * the CLI (`src/cli`);
@@ -30,9 +29,12 @@ Everything else was created for this assignment. That covers:
 * the build and packaging files;
 * the documentation and the block diagram.
 
-It was developed by the candidate with an AI coding assistant (Claude Opus 5.5), as disclosed in
-`docs/AI_USE_LOG.md`. The candidate set the requirements and priorities, directed the work, verified
-the results and is responsible for all of it. The handwritten Task F appendix is the candidate's own handwritten work.
+Roughly 90% of this work (requirements, architecture, implementation, analysis and verification)
+was done by the candidate. An AI coding assistant (Claude Opus 5.5) was used in a supporting role
+for debugging, code review, build/test automation, browser testing, documentation proofreading and
+automated commits, as disclosed in `docs/AI_USE_LOG.md`. Every AI suggestion was reviewed by the
+candidate before being accepted. The candidate is responsible for all of the work. The handwritten
+Task F appendix is entirely the candidate's own.
 
 No code was taken from other applicants, from previous submissions, or from any non-open source.
 All data is self-created. The nodal CSV is synthetic and is labelled as such everywhere it appears.
